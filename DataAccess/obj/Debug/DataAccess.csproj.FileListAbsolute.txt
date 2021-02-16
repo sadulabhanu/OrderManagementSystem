@@ -1,0 +1,10 @@
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Bhanu\Desktop\OrderManagementSystem\DataAccess\obj\Debug\DataAccess.pdb

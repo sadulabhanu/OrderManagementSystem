@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OrderManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OrderID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Buyer">
+    <Key>
+      <PropertyRef Name="BuyerID" />
+    </Key>
+    <Property Name="BuyerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_ID" Type="Int32" />
+    <Property Name="BuyerID" Type="Int32" />
+    <Property Name="Order_Status" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Weight" Type="Int32" />
+    <Property Name="Height" Type="Int32" />
+    <Property Name="SKU" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="Barcode" Type="String" MaxLength="13" FixedLength="true" Unicode="false" />
+    <Property Name="Available_Quantity" Type="Int32" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="OrderManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrators" EntityType="Self.Administrator" />
+    <EntitySet Name="Buyers" EntityType="Self.Buyer" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <FunctionImport Name="sp_getallOrders" ReturnType="Collection(OrderManagementSystemModel.sp_getallOrders_Result)" />
+    <FunctionImport Name="sp_getordersforBuyer" ReturnType="Collection(OrderManagementSystemModel.sp_getordersforBuyer_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Orders_CRUD" ReturnType="Collection(OrderManagementSystemModel.sp_Orders_CRUD_Result)">
+      <Parameter Name="OrderID" Mode="In" Type="Int32" />
+      <Parameter Name="ProductID" Mode="In" Type="Int32" />
+      <Parameter Name="Order_Status" Mode="In" Type="String" />
+      <Parameter Name="BuyerID" Mode="In" Type="Int32" />
+      <Parameter Name="Option" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_getallOrders_Result">
+    <Property Type="Int32" Name="OrderID" Nullable="false" />
+    <Property Type="Int32" Name="BuyerID" Nullable="true" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SKU" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="Barcode" Nullable="true" MaxLength="13" />
+  </ComplexType>
+  <ComplexType Name="sp_getordersforBuyer_Result">
+    <Property Type="Int32" Name="BuyerID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="OrderID" Nullable="true" />
+    <Property Type="String" Name="Order_Status" Nullable="true" MaxLength="11" />
+  </ComplexType>
+  <ComplexType Name="sp_Orders_CRUD_Result">
+    <Property Type="Int32" Name="OrderID" Nullable="false" />
+    <Property Type="String" Name="Order_Status" Nullable="true" MaxLength="11" />
+    <Property Type="Int32" Name="BuyerID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="ProductID" Nullable="false" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+  </ComplexType>
+</Schema>
